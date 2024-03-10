@@ -2,23 +2,15 @@ const path = require('path')
 
 const express = require('express') 
 
-// const mysql = require('mysql')
-// const connect = mysql.createConnection({
-//     host: 'database-1.cz0iiki2sghw.eu-north-1.rds.amazonaws.com',
-//     user: 'admin',
-//     password: 'rahul2021',
-//     database: 'awsnode'
-// })
-
-// connect.connect()
-
-// connect.query('create table ')
+const connect = require('./db')
 
 const app = express()
 
 app.listen(3000,() => console.log('this server is running at port:3000')) 
 
-// console.log(app)
+connect.query('select * from mike', (err,rows) => {
+    console.log(rows)
+})
 
 app.get('/',(request,response) => {
     console.log('got the request')
@@ -47,6 +39,15 @@ app.use(express.json())
 app.post('/book', (req,res) => {
     const bookDetails = req.body
 })
+
+
+app.post('/qry', (req,res) => {
+    console.log(req.query)
+    res.status(200)
+})
+
+
+
 
 
 
