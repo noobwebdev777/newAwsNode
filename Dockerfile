@@ -8,6 +8,9 @@ COPY package*.json ./
 # Install only production dependencies to reduce image size
 RUN npm install --production
 
+# Install bash for debugging purposes
+RUN apt-get update && apt-get install -y bash
+
 COPY . .
 
 # Stage 2: Final stage
